@@ -4,14 +4,14 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Signup.css";
 
 function Signup() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/auth/register", { email, password });
+      await axios.post("/auth/register", { username, password });
       alert("Signup successful! You can now log in.");
       navigate("/login");
     } catch (err) {
@@ -26,9 +26,9 @@ function Signup() {
         <form onSubmit={handleSignup}>
           <input
             type="text"
-            placeholder="enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Choose a Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
           <input

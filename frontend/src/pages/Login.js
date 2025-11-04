@@ -4,14 +4,14 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
 
 function Login() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("/auth/login", { email, password });
+      const { data } = await axios.post("/auth/login", { username, password });
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", data.user.role);
       if (data.user.role === "admin") navigate("/admin/dashboard");
@@ -28,9 +28,9 @@ function Login() {
         <form onSubmit={handleLogin}>
           <input
             type="text"
-            placeholder="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
           <input
